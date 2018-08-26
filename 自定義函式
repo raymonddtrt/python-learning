@@ -17,3 +17,35 @@ def prettifyString(s,prefix = "\u2660",postfix = "\u2660"):
 print(prettifyString("hello","\u2663","\u2661"))
 print(prettifyString("hello2","\u2663"))
 print(prettifyString("hello3"))
+#若想跳過prefix，就要直接指定postfix=
+print(prettifyString("hello4",postfix="\u2661"))
+
+#不定參數(不確定參數有幾個)
+def add1(num_list):
+    result = 0
+    for single_number in num_list:
+        result = result + single_number
+    return result
+
+print(add1([3,4,5,6,7,8]))
+
+def add2(*num_list):
+    result = 0
+    for single_number in num_list:
+        result = result + single_number
+    return result
+
+print("result", add2(3,4,5,6,7,8,9,20))
+
+def add3(*args,**kwargs):
+    result = 0
+    for single_number in args:
+        result = result + single_number
+    if "mul" in kwargs:
+        result = result * kwargs["mul"]
+    if "plus" in kwargs:
+        result = result + kwargs["plus"]
+    return result
+
+print("result", add3(3,4,5,6,7,8,9,20))
+print(add3(3,4,5,mul = 3, plus = 5.2))
