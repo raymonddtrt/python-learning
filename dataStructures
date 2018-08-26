@@ -1,0 +1,90 @@
+#有順序，不可變動的列表:tuple，使用小括號
+
+#定義Tuple
+a = ("Raymond",175,75)
+print(a)
+
+#Tuple相加
+a = a + ("Taipei","M")
+print(a)
+
+#取值
+print(a[3])
+print(a[0:3])
+print(a[len(a)-1])
+
+#####################################################
+
+#有順序，可變動的列表:list，使用中括號
+
+#定義list
+a = ["Raymond","Amy","Bob"]
+
+#取值
+print(a)
+
+print(a[1])
+print(a[0:3])
+
+a = a + ["Carol","Dylan"]
+print(a)
+
+print(len(a))
+
+del a[1]
+print(a)
+
+#list獨特語法
+a.append("Ariel")
+print(a)
+a.insert(0,"Carol")   #可以重複
+print(a)
+a.remove("Carol")   #把第一個Carol刪除
+print(a)
+
+#####################################################
+
+#無順序的列表:集合(set)，使用大括弧
+
+#定義Set
+name_set = {"Amy","Bob","Carol","Amy"}
+print(name_set) #重複的會刪掉，順序不會固定
+print("Amy" in name_set)    #回傳Boolen    
+print(len(name_set))
+
+#Set獨特語法
+name_set.add("Emily")   #沒有回傳值
+print(name_set)
+
+name_set.remove("Amy")
+print(name_set)
+
+name_set.discard("Bob")
+print(name_set)
+
+#remove和discard的差異:
+#若值不存在，remove會回報錯誤，discard不會
+"""
+name_set.remove("GT")
+print(name_set)
+
+name_set.discard("GT")
+print(name_set)
+"""
+print(name_set.union({"Aaron","Tammy","Emily"}))  
+
+#####################################################
+
+#字典，加強版的tuple
+
+#定義字典
+ppl_info = {"name":"Raymond","height":175,"weight":75}
+print(ppl_info)
+
+print(ppl_info["name"])
+
+ppl_info["gender"] = "M"
+print(ppl_info)
+
+ppl_info["height"] = ppl_info["height"] + 2
+print(ppl_info)
