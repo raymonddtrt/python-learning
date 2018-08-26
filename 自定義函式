@@ -1,0 +1,19 @@
+#自定義函式三要素
+#1.函數名稱(name)
+#2.參數(argument)
+#3.回傳值(return value)
+
+def add(num1, num2):
+    num3 = num1 + num2
+    return num3
+
+result = add(3,5.2)
+print(result)
+
+#當一個參數開始有預設值時，後面的參數都要有預設值
+def prettifyString(s,prefix = "\u2660",postfix = "\u2660"):
+    result = prefix + s + postfix
+    return result
+print(prettifyString("hello","\u2663","\u2661"))
+print(prettifyString("hello2","\u2663"))
+print(prettifyString("hello3"))
