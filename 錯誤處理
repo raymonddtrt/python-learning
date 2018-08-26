@@ -1,0 +1,7 @@
+while True:
+    try:
+        number = int(input("請輸入數字"))
+        break
+    except ValueError:
+        print("請輸入正確格式")
+print("你輸入對了",number)
