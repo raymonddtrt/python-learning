@@ -1,0 +1,24 @@
+#while迴圈
+result = 0
+times = 0
+while times < 10:
+    result = result + (times + 1)
+    times = times + 1
+print(result)
+
+#for迴圈
+for single_number in range(0,8):
+    print(single_number + 1)
+
+#迴圈結合資料群集
+name_list=["Amy","Bob","Carol"] #list
+for single_name in name_list:
+    print(single_name)
+
+name_set = {"Amy","Bob","Carol","Amy"}  #集合，即使有重複也會自動刪掉
+for single_name in name_list:
+    print(single_name)
+
+ppl_info={"name":"Raymond","height":175,"weight":75}    #字典
+for single_key in ppl_info:
+print(single_key,ppl_info[single_key])
