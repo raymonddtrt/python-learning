@@ -1,0 +1,48 @@
+""" 
+學習點:
+1.發送get request(with headers)
+2.利用split找到動態參數cmkey
+3.學會如何encode url
+4.抓到資料之後，要用json.load才能變成list，否則只是一大串字串
+5.輸出成CSV
+6.創立空陣列，再利用append 
+7.串接字串及變數時，記得要先str(變數)
+"""
+
+
+import requests
+import json
+import csv
+from urllib.parse import quote
+
+def main():
+    cmoney_crawler(1215)
+
+def cmoney_crawler(input_stock):
+    stock=str(input_stock)
+
+    cmkey_url="https://www.cmoney.tw/finance/f00036.aspx?s=" + stock
+    cmkey_res=requests.get(url=cmkey_url)
+    #print(cmkey_res.text)
+    get_cmkey=cmkey_res.text.split("primary-navi-now'><a href='")[1].split("'>三大法人")[0].split("cmkey='")[1]
+
+    cmkey=quote(get_cmkey)
+
+    req_url="https://www.cmoney.tw/finance/ashx/mainpage.ashx?action=GetInstitutionalInvestorsShareholding&stockId=" + stock + "&cmkey=" + cmkey
+    req_headers={"referer":"https://www.cmoney.tw/finance/f00036.aspx?s=" + stock}
+    res=requests.get(url=req_url,headers=req_headers)
+
+    resjson = json.loads(res.text)
+    
+    str_list=["Date","ForeignInvestorsBuySell","InvestmentTrustBuySell","DealerBuySell","ForeignInvestorsShareholding","InvestmentTrustShareholding","DealerShareholding","ForeignInvestorsShareholdingRate","InvestmentTrustShareholdingRate","DealerShareholdingRate"]
+
+    with open('cmoney.csv','w',newline='') as f1:
+        writer=csv.writer(f1,dialect = ('excel'))
+        writer.writerow(str_list)
+        for data in resjson:
+            myArr=[]
+            for myStr in str_list:            
+                myArr.append(data[myStr])
+            print(myArr)
+            writer.writerow(myArr)
+main()
